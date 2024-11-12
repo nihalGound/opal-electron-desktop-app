@@ -1,4 +1,4 @@
-import { onStopRecording, StartRecording } from '@/lib/recorder'
+import { onStopRecording, selectSources, StartRecording } from '@/lib/recorder'
 import { cn, videoRecordingTime } from '@/lib/utils'
 import { Cast, Pause, Square } from 'lucide-react'
 import  { useEffect, useRef, useState } from 'react'
@@ -33,6 +33,14 @@ const StudioTray = () => {
     }
 
     const videoElement = useRef<HTMLVideoElement | null>(null)
+
+    useEffect(() => {
+        if (onSources && onSources.screen) selectSources(onSources,videoElement)
+        return () => {
+            selectSources(onSources!,videoElement)
+        }
+    },[onSources])
+
     useEffect(() => {
         if(!recording)return
         const recordTimeInterval = setInterval(() => {
