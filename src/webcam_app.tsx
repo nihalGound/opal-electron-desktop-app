@@ -3,13 +3,16 @@ import {Toaster} from "sonner"
 import './App.css'
 import ControlLayout from "./layouts/ControlLayout"
 import AuthButton from "./components/ui/Global/AuthButton"
+import StudioTray from "./components/ui/Global/StudioTray"
 
 const client = new QueryClient()
 
 function App() {
 
   return (
-    <div>Webcam</div>
+    <div>
+      <StudioTray />
+    </div>
   )
 }
 

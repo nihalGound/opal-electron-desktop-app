@@ -28,7 +28,7 @@ let floatingWebCam: BrowserWindow | null
 
 function createWindow() {
   win = new BrowserWindow({
-    width: 600,
+    width: 500,
     height: 600,
     minHeight: 600,
     minWidth: 300,
@@ -49,9 +49,9 @@ function createWindow() {
 
   studio = new BrowserWindow({
     width: 400,
-    height: 50,
+    // height: 50,
     minHeight: 70,
-    maxHeight: 600,
+    // maxHeight: 400,
     minWidth: 300,
     maxWidth: 400,
     frame: false,
@@ -144,7 +144,6 @@ ipcMain.handle("getSources", async () => {
     fetchWindowIcons: true,
     types: ["window","screen"],
   })
-  console.log(data)
   return data
 })
 
@@ -152,6 +151,7 @@ ipcMain.on("media-sources",(event,payload) => {
   console.log(event)
   studio?.webContents.send("profile-received",payload)
 })
+
 
 ipcMain.on("reize-studio", (event,payload) => {
   console.log(event)
@@ -167,6 +167,9 @@ ipcMain.on("hide-plugin",(event,payload) => {
   console.log(event)
   win?.webContents.send("hide-plugin",payload)
 })
+// ipcMain.on("show-plugin",(event,payload) =>{
+//   win?.webContents.send("show-plugin",payload)
+// })
 
 app.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the

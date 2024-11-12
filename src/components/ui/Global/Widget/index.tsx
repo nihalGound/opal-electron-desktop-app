@@ -38,7 +38,7 @@ const Widget = () => {
     useEffect(() => {
         if (user && user.id) {
             fetchUserProfile(user.id).then(p => setProfile(p))
-            console.log(profile)
+            fetchMediaResources()
         }
     },[user])
   return (
@@ -51,7 +51,7 @@ const Widget = () => {
         <SignedIn>
             {profile ? (<MediaConfigration state={state} user={profile.user} />) :(
                 <div className="w-full h-full flex justify-center items-center">
-                    {profile}hello
+                    <Loader />
                 </div>
             )}
         </SignedIn>

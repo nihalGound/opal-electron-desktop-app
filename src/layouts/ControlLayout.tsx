@@ -15,9 +15,13 @@ const ControlLayout = ({ children, className }: Props) => {
     console.log(event)
     setIsVisible(payload.state)
   })
+  // window.ipcRenderer.on("show-plugin", (event, payload) => {
+  //   console.log(event)
+  //   setIsVisible(payload.state)
+  // })
 
   return (
-    <div className={cn(className, isVisible && "invisible", "bg-[#171717] border-2 border-neutral-700 flex px-1 flex-col rounded-3xl overflow-hidden h-full")}>
+    <div className={cn(className, isVisible && "invisible", "bg-[#171717] border-2 border-neutral-700 flex px-1 flex-col rounded-3xl overflow-hidden")}>
       <div className="flex justify-between items-center p-5 draggable">
         <span className="non-draggable">
           <UserButton />
@@ -28,7 +32,7 @@ const ControlLayout = ({ children, className }: Props) => {
           onClick={onCloseApp}
         />
       </div>
-      <div className="flex-1 h-0 overflow-auto">{children}</div>
+      <div className="overflow-auto">{children}</div>
       <div className="p-5 flex w-full">
         <div className="flex items-center gap-x-2">
           <img src="/opal-logo.svg" alt="app logo" />

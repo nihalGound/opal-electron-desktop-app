@@ -12,7 +12,7 @@ let studio;
 let floatingWebCam;
 function createWindow() {
   win = new BrowserWindow({
-    width: 600,
+    width: 500,
     height: 600,
     minHeight: 600,
     minWidth: 300,
@@ -31,9 +31,9 @@ function createWindow() {
   });
   studio = new BrowserWindow({
     width: 400,
-    height: 50,
+    // height: 50,
     minHeight: 70,
-    maxHeight: 600,
+    // maxHeight: 400,
     minWidth: 300,
     maxWidth: 400,
     frame: false,
@@ -112,7 +112,6 @@ ipcMain.handle("getSources", async () => {
     fetchWindowIcons: true,
     types: ["window", "screen"]
   });
-  console.log(data);
   return data;
 });
 ipcMain.on("media-sources", (event, payload) => {
