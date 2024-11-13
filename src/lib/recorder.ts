@@ -78,6 +78,7 @@ videoElement: React.RefObject<HTMLVideoElement>
 
         if(videoElement && videoElement.current) {
             videoElement.current.srcObject = stream
+            videoElement.current.muted = true
             await videoElement.current.play()
         }
 
