@@ -75,7 +75,11 @@ const StudioTray = () => {
                 <div {...(onSources && {
                     onClick: () => {
                         setRecording(true)
-                        StartRecording(onSources)
+                        StartRecording({
+                          audio:onSources.audio,
+                          id: onSources.id,
+                          screen: onSources.screen
+                        })
                     },
                 })}
                 className={cn(

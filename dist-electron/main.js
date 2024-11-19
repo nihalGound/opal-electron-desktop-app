@@ -16,12 +16,12 @@ function createWindow() {
     height: 600,
     minHeight: 600,
     minWidth: 300,
-    frame: false,
     hasShadow: false,
+    frame: false,
     transparent: true,
     alwaysOnTop: true,
-    focusable: false,
-    icon: path.join(process.env.VITE_PUBLIC, "electron-vite.svg"),
+    focusable: true,
+    icon: path.join(process.env.VITE_PUBLIC, "opal-logo.svg"),
     webPreferences: {
       nodeIntegration: false,
       contextIsolation: true,
@@ -31,7 +31,7 @@ function createWindow() {
   });
   studio = new BrowserWindow({
     width: 400,
-    // height: 50,
+    // height: 200,
     minHeight: 70,
     // maxHeight: 400,
     minWidth: 300,
@@ -49,12 +49,12 @@ function createWindow() {
     }
   });
   floatingWebCam = new BrowserWindow({
-    width: 400,
+    width: 200,
     height: 200,
-    minHeight: 70,
-    maxHeight: 400,
-    minWidth: 300,
-    maxWidth: 400,
+    minHeight: 20,
+    maxHeight: 200,
+    minWidth: 200,
+    maxWidth: 200,
     frame: false,
     transparent: true,
     alwaysOnTop: true,
@@ -84,8 +84,8 @@ function createWindow() {
   });
   if (VITE_DEV_SERVER_URL) {
     win.loadURL(VITE_DEV_SERVER_URL);
-    studio.loadURL(`${"http://localhost:5173"}/studio.html`);
-    floatingWebCam.loadURL(`${"http://localhost:5173"}/webcam.html`);
+    studio.loadURL(`${"http://localhost:5173/"}/studio.html`);
+    floatingWebCam.loadURL(`${"http://localhost:5173/"}/webcam.html`);
   } else {
     win.loadFile(path.join(RENDERER_DIST, "index.html"));
     studio.loadFile(path.join(RENDERER_DIST, "studio.html"));
@@ -120,7 +120,7 @@ ipcMain.on("media-sources", (event, payload) => {
   console.log(event);
   studio == null ? void 0 : studio.webContents.send("profile-received", payload);
 });
-ipcMain.on("reize-studio", (event, payload) => {
+ipcMain.on("resize-studio", (event, payload) => {
   console.log(event);
   if (payload.shrink) {
     studio == null ? void 0 : studio.setSize(400, 100);

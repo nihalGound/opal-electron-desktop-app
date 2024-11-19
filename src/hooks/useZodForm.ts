@@ -1,27 +1,28 @@
-import { z } from "zod";
-import {DefaultValues, useForm} from "react-hook-form"
-import {zodResolver} from "@hookform/resolvers/zod"
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { UseMutateFunction } from "@tanstack/react-query";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { DefaultValues, useForm } from "react-hook-form";
+//@ts-ignore
+import z from "zod";
 
 export const useZodForm = <T extends z.ZodType<any>>(
-    schema: T,
-    defaultValues?: DefaultValues<z.TypeOf<T>> | undefined
+  schema: T,
+  mutation: UseMutateFunction,
+  defaultValues?: DefaultValues<z.TypeOf<T>> | undefined
 ) => {
-    const {
-        register,
-        formState: { errors },
-        handleSubmit,
-        watch,
-        reset,
-    } = useForm<z.infer<T>>({
-        resolver: zodResolver(schema),
-        defaultValues,
-    })
+  const {
+    register,
+    watch,
+    reset,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<z.infer<T>>({
+    resolver: zodResolver(schema),
+    defaultValues,
+  });
 
-    return {
-        register,
-        errors,
-        handleSubmit,
-        watch,
-        reset,
-    }
-}
+  const onFormSubmit = handleSubmit(async (values) => mutation({ ...values }));
+
+  return { register, watch, reset, onFormSubmit, errors };
+};
