@@ -22,6 +22,7 @@ export const useStudioSettings = (
     audio: audio!,
     preset: preset!,
   });
+
   const { mutate, isPending } = useMutation({
     mutationKey: ["update-studio"],
     mutationFn: (data: {
@@ -31,7 +32,7 @@ export const useStudioSettings = (
       preset: "HD" | "SD";
     }) => updateStudioSettings(data.id, data.screen, data.audio, data.preset),
     onSuccess: (data) => {
-      return toast(data.status === 200 ? "Success" : "Error", {
+      toast(data.status === 200 ? "Success" : "Error", {
         description: data.Message,
       });
     },
@@ -48,10 +49,9 @@ export const useStudioSettings = (
         preset,
       });
     }
-  }, [screen, audio]); // Added id and preset to dependencies
+  }, [screen, audio]);
 
   useEffect(() => {
-    //@ts-expect-error
     const subscribe = watch((values) => {
       setOnPresent(values.preset);
       mutate({

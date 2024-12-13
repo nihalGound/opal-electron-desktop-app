@@ -112,9 +112,10 @@ function createWindow() {
     floatingWebCam.loadURL(`${import.meta.env.VITE_APP_URL}/webcam.html`);
   } else {
     // win.loadFile('dist/index.html')
-    win.loadFile(path.join(RENDERER_DIST, "index.html"));
-    studio.loadFile(path.join(RENDERER_DIST, "studio.html"));
-    floatingWebCam.loadFile(path.join(RENDERER_DIST, "webcam.html"));
+    win.loadURL(`file://${path.join(RENDERER_DIST, "index.html")}`);
+studio.loadURL(`file://${path.join(RENDERER_DIST, "studio.html")}`);
+floatingWebCam.loadURL(`file://${path.join(RENDERER_DIST, "webcam.html")}`);
+
   }
 }
 

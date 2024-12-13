@@ -38,11 +38,11 @@ const MediaConfiguration = ({ state, user }: Props) => {
     (audio) => audio.deviceId === user?.studio?.mic
   );
   const { isPending, register, onPresent } = useStudioSettings(
-    user!.id,
-    user?.studio?.screen || state.displays?.[0]?.id,
-    user?.studio?.mic || state.audioInput?.[0]?.deviceId,
-    user?.studio?.preset,
-    user?.subscription?.plan
+    user?.id || "",
+    activeScreen?.id || state.displays?.[0]?.id || null,
+    activeAudio?.deviceId || state.audioInput?.[0]?.deviceId || null,
+    user?.studio?.preset || undefined,
+    user?.subscription?.plan || undefined
   );
   console.log(state);
   return (
