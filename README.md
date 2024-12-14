@@ -1,6 +1,5 @@
 # Opal: Screen Recording and Collaboration Platform
 
-[![Opal Workspace Tour](/public/thumbbnail.png)](https://res.cloudinary.com/dqglrqnma/video/upload/v1734088979/opal/e6dkyqcgs1ov2xddz8do.mp4)
 
 Opal is a comprehensive application designed to streamline screen recording and video collaboration workflows. It consists of three integrated components: a Next.js web application, an Electron.js-based desktop application, and an Express.js server for video processing.
 
